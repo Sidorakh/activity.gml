@@ -4,4 +4,4 @@ A basic shim/implementation of the [Discord Activities](https://discord.com/deve
 
 Example code is contained within `obj_discord_sdk_example`
 
-The source project for the custom `index.html` file used can be found in [my activity.gml.html repository](https://github.com/Sidorakh/activity.gml)
+The source project for the custom `index.html` file used can be found in [this repository](https://github.com/Sidorakh/activity.gml) if it's needed
