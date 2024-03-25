@@ -1,4 +1,4 @@
-
+// This file's only here as a proxy
 /**
  * @typedef DiscordSDK
  * @property {string | null} clientId

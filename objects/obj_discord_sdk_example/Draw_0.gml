@@ -12,3 +12,14 @@ if (discord_sdk_is_ready()) {
 
 
 draw_text(4,4,str);
+
+
+if (!surface_exists(surf)) {
+	surf = surface_create(256,256);
+}
+surface_set_target(surf);
+draw_clear(c_white);
+draw_rectangle_color(0,0,255,255,c_red,c_lime,c_blue,c_yellow,false);
+surface_reset_target();
+
+draw_surface(surf,0,room_height-256);
