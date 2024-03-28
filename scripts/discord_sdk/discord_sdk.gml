@@ -19,13 +19,17 @@ function discord_sdk_get_client_id() {
 function discord_sdk_get_guild_id() {
 	return __discord_sdk_get_guild_id();
 }
+
 function discord_sdk_get_channel_id() {
 	return __discord_sdk_get_channel_id();
 }
 
-
 function discord_sdk_get_instance_id() {
 	return __discord_sdk_get_instance_id();
+}
+
+function discord_sdk_get_frame_id() {
+	return __discord_sdk_get_frame_id();
 }
 
 function discord_sdk_get_platform() {
@@ -158,6 +162,21 @@ function discord_sdk_upload_share_surface(surface_data) {
 	
 	buffer_delete(buff);
 	return request_id;
+}
+
+function discord_avatar_url(user_id, avatar, size=undefined) {
+	if (avatar == undefined) {
+		if (size == undefined) {
+			return $"https://cdn.discordapp.com/embed/avatars/{(int64(user_id) >> 22) mod 6}.png";
+		} else {
+			return $"https://cdn.discordapp.com/embed/avatars/{(int64(user_id) >> 22) mod 6}.png?size={size}";
+		}
+	}
+	if (size == undefined) {
+		return $"https://cdn.discordapp.com/avatars/{user_id}/{avatar}.png";
+	} else {
+		return $"https://cdn.discordapp.com/avatars/{user_id}/{avatar}.png?size={size}";
+	}
 }
 
 

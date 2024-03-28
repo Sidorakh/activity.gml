@@ -18,6 +18,7 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings":[
+    {"name":"obj_discord_avatar","order":1,"path":"objects/obj_discord_avatar/obj_discord_avatar.yy",},
     {"name":"discord_sdk","order":1,"path":"scripts/discord_sdk/discord_sdk.yy",},
   ],
 }

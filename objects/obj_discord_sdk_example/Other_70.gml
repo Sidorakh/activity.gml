@@ -15,7 +15,8 @@ if (type == "DISCORD_READY") {
 }
 
 if (type == "DISCORD_AUTHORIZE_SUCCESS") {
-	//show_message_async($"Data: {json_stringify(data)}");
+	user_id = data.user_data.id;
+	show_message_async($"Data: {json_stringify(data,true)}");
 	// subscribe to relevant events
 	discord_sdk_subscribe("VOICE_STATE_UPDATE");
 	discord_sdk_subscribe("SPEAKING_START");
@@ -26,12 +27,24 @@ if (type == "DISCORD_AUTHORIZE_SUCCESS") {
 	discord_sdk_subscribe("THERMAL_STATE_UPDATE");
 	discord_sdk_subscribe("ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE");
 	discord_sdk_subscribe("ENTITLEMENT_CREATE");
+	
+	
+	network_connect_raw_async(socket,$"wss://{client_id}.discordsays.com/{data.user_data.id}/{data.websocket_token}/{discord_sdk_get_instance_id()}",443);
 }
 
 if (string_starts_with(type,"DISCORD_COMMAND")) {
 	//show_message_async($"Type: {type}\nData: {json_stringify(data,true)}");
 }
 
+if (type == "DISCORD_ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE") {
+	for (var i=0;i<array_length(data.participants);i++) {
+		var member = data.participants[i]
+		if (members[$ member.id] == undefined) {
+			add_member(member);
+		}
+		
+	}
+}
 
 if (async_load[? "id"] == share_request && share_request != -1) {
 	discord_sdk_commands_open_share_moment_dialog(data.attachment.url);

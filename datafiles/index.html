@@ -9453,7 +9453,7 @@ typeof SuppressedError === "function" ? SuppressedError : function(error, suppre
   var e = new Error(message);
   return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
 };
-let token = null;
+let access_token = null;
 window.discord_sdk_is_ready = function() {
   return window.discord_sdk_ready;
 };
@@ -9477,6 +9477,10 @@ window.discord_sdk_get_instance_id = function() {
   if (sdk())
     return sdk().instanceId;
 };
+window.discord_sdk_get_frame_id = function() {
+  const p = new URLSearchParams(window.location.href);
+  return p.get("frame_id");
+};
 window.discord_sdk_get_platform = function() {
   if (sdk())
     return sdk().platform;
@@ -9499,13 +9503,15 @@ window.discord_sdk_commands_authorize = async function(backend_url, scopes = ["i
       code
     })
   });
-  const { access_token } = await result.json();
-  token = access_token;
+  const json = await result.json();
+  access_token = json.access_token;
+  json.refresh_token;
+  json.expires_in;
   const auth = await sdk().commands.authenticate({ access_token });
   if (auth == null) {
     console.log("Authentication failed");
   }
-  window.gml_Script_gmcallback_discord_sdk_callback(null, null, `DISCORD_AUTHORIZE_SUCCESS`, JSON.stringify(auth));
+  window.gml_Script_gmcallback_discord_sdk_callback(null, null, `DISCORD_AUTHORIZE_SUCCESS`, JSON.stringify(json));
 };
 const discord_sdk_commands = {
   async capture_log(message, level = "info") {
@@ -9601,7 +9607,6 @@ window.discord_sdk_set_share_surface_size = function(width, height) {
   canvas.height = height;
 };
 window.discord_sdk_upload_share_surface = function(request_id, surface_data, width, height) {
-  console.log(surface_data);
   const canvas = document.querySelector("#gmsurface");
   canvas.width = width;
   canvas.height = height;
@@ -9611,7 +9616,6 @@ window.discord_sdk_upload_share_surface = function(request_id, surface_data, wid
   ctx.putImageData(image, 0, 0);
   canvas.toBlob(async (blob) => {
     const body = new FormData();
-    console.log(blob);
     const file = new File([await blob.arrayBuffer()], "share.png", { type: blob.type });
     body.append("file", file);
     const response = await fetch(`https://discord.com/api/applications/${sdk().clientId}/attachment`, {

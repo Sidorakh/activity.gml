@@ -39,9 +39,11 @@
   "name":"activity.gml",
   "resources":[
     {"id":{"name":"discord_embedded_sdk","path":"extensions/discord_embedded_sdk/discord_embedded_sdk.yy",},},
+    {"id":{"name":"obj_discord_avatar","path":"objects/obj_discord_avatar/obj_discord_avatar.yy",},},
     {"id":{"name":"obj_discord_sdk_example","path":"objects/obj_discord_sdk_example/obj_discord_sdk_example.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"discord_sdk","path":"scripts/discord_sdk/discord_sdk.yy",},},
+    {"id":{"name":"spr_blank_avatar","path":"sprites/spr_blank_avatar/spr_blank_avatar.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
