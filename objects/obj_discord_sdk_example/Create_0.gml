@@ -8,8 +8,6 @@ height = 0;
 
 cmd = noone;
 
-surf = -1;
-
 user_id = "";
 
 share_request = -1;

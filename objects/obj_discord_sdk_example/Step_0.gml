@@ -55,7 +55,3 @@ if (keyboard_check_pressed(ord("T"))) {
 	discord_sdk_commands_user_settings_get_locale();
 }
 
-
-if (keyboard_check_pressed(vk_space)) {
-	share_request = discord_sdk_upload_share_surface(surf);
-}

@@ -152,10 +152,10 @@ function discord_sdk_commands_user_settings_get_locale() {
 
 function discord_sdk_upload_share_surface(surface_data) {
 	var request_id = discord_sdk_request_count();
-	var w = surface_get_width(surf);
-	var h = surface_get_height(surf);
+	var w = surface_get_width(surface_data);
+	var h = surface_get_height(surface_data);
 	var buff = buffer_create(w*h*4,buffer_fixed,1);
-	buffer_get_surface(buff,surf,0);
+	buffer_get_surface(buff,surface_data,0);
 	/// feather ignore once GM1041
 	__discord_sdk_upload_share_surface(request_id,buffer_get_address(buff),w,h);
 	/// feather ignore once GM1041
