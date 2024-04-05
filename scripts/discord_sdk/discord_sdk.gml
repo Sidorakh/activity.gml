@@ -37,11 +37,7 @@ function discord_sdk_get_platform() {
 }
 
 function discord_sdk_subscribe(event) {
-	if (discord_sdk_check_scopes(event)) {
-		return __discord_sdk_subscribe(event);
-	} else {
-		show_debug_message($"Required scope for {event} not found")
-	}
+    return __discord_sdk_subscribe(event);
 }
 
 function discord_sdk_unsubscribe(event) {

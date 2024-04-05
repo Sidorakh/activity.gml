@@ -20,7 +20,7 @@ if (type == "DISCORD_AUTHORIZE_SUCCESS") {
 	// subscribe to relevant events
 	discord_sdk_subscribe("VOICE_STATE_UPDATE");
 	discord_sdk_subscribe("SPEAKING_START");
-	discord_sdk_subscribe("SPEAKING_STOP");
+	discord_sdk_subscribe("SPEAKING_STOP")
 	discord_sdk_subscribe("ACTIVITY_LAYOUT_MODE_UPDATE");
 	discord_sdk_subscribe("ORIENTATION_UPDATE");
 	discord_sdk_subscribe("CURRENT_USER_UPDATE");
@@ -29,7 +29,7 @@ if (type == "DISCORD_AUTHORIZE_SUCCESS") {
 	discord_sdk_subscribe("ENTITLEMENT_CREATE");
 	
 	
-	network_connect_raw_async(socket,$"wss://{client_id}.discordsays.com/{data.user_data.id}/{data.websocket_token}/{discord_sdk_get_instance_id()}",443);
+	network_connect_raw_async(socket,$"wss://{client_id}.discordsays.com/{data.user_data.id}/{data.websocket_token}/{discord_sdk_get_instance_id()}/",443);
 }
 
 if (string_starts_with(type,"DISCORD_COMMAND")) {
