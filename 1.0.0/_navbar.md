@@ -1,0 +1,3 @@
+- [**Download the latest release**](https://github.com/Sidorakh/activity.gml/releases)
+- [**Report an issue**](https://github.com/Sidorakh/activity.gml/issues)
+- [**Support me**](https://paypal.me/sidorakh)
