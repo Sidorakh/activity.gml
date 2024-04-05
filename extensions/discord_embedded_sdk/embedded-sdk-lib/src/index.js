@@ -183,7 +183,7 @@ window.discord_sdk_set_share_surface_size = function(width,height) {
   
 window.discord_sdk_upload_share_surface = function(request_id, surface_data,width,height) {
     // discord.com/api/applications/${applicationId}/attachment
-    const canvas = document.querySelector('#gmsurface');
+    const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext('2d');
