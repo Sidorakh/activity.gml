@@ -52,11 +52,11 @@ Data:
 
 ```ts
 enum SKU_TYPE {
-    UNHANDLED: -1,
-    APPLICATION:  1,
-    DLC: 2,
-    CONSUMABLE: 3, 
-    BUNDLE: 4,
-    SUBSCRIPTION: 5,
+    UNHANDLED = -1,
+    APPLICATION =  1,
+    DLC = 2,
+    CONSUMABLE = 3, 
+    BUNDLE = 4,
+    SUBSCRIPTION = 5,
 }
 ```

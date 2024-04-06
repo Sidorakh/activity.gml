@@ -45,14 +45,14 @@ For the server:
    - Copy the URL that Cloudflared displayed
 8. In the Discord Developers page, open your application, go to URL Mappings under Activities in the sidebar. Put the URl you copied in step 7 in the Target box and hit save ![](images/cloudflare-discord-map.png)
 9. In the Discord application, open User Settings > App Settings > Advanved, and switch on Application Test Mode
-   - ![](images/discord-app-test-mode-switch)
+   - ![](images/discord-app-test-mode-switch.png)
    - ![](images/discord-app-test-mode-data.png)
    - In this window, put in the client ID you used in step 3 into the application ID box, set the URL Origin type to Discord Proxy, then click activate
 
 For the client
 
 10. Call `discord_sdk_setup(CLIENT_ID);` oce at the start of the game, replace `CLIENT_ID` with your applications ID (as a string). 
-   - For example: `discord_sdk_setup("1219424590342782987"");`
+   - For example: `discord_sdk_setup("1219424590342782987");`
 11. In a Social Async event, enter the following code
 ```js
 var type = async_load[? "type"];
