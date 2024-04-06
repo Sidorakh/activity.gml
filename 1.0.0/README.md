@@ -16,6 +16,9 @@
 ---
 
 # Why was activity.gml made?
-I felt like it
+I felt like it. I wanted an excuse to try activities out properly.
 
 ---
+
+# What license is activity.gml released under?
+This library was released under the [MIT license](https://github.com/Sidorakh/activity.gml/blob/main/LICENSE)

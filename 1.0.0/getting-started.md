@@ -60,6 +60,9 @@ if (type == "DISCORD_READY") {
     discord_sdk_commands_authorize("/api/auth/token",["identify","guilds","rpc.voice.read","rpc.activities.write"]);
 }
 ```
-12. Run your game for the HTML5 platform, adn then try to access it in a Discord Voice Channel
+12. Run your game for the HTML5 platform, and then you should be able to access it in a Discord Voice Channel
+
+
+
 
 
