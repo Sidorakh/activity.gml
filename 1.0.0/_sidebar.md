@@ -3,8 +3,8 @@
 ---
 **API Reference**
 - [The Social Async Event](the-social-async-event.md)
-- [DiscordRichPresence()](discord-rich-presence.md)
 - [Global Activity Data](global-activity-data.md)
+- [DiscordRichPresence()](discord-rich-presence.md)
 - [discord_sdk_setup()](discord_sdk_setup.md)
 - [discord_sdk_commands_authorize()](discord_sdk_commands_authorize.md)
 - [discord_sdk_commands_capture_log()](discord_sdk_commands_capture_log.md)
