@@ -7,6 +7,8 @@ var data = async_load[? "data"];
 //show_debug_message($"Data: {json_stringify(data)}");
 show_debug_message($"Type: {type}\nData: {json_stringify(data)}")
 if (type == "DISCORD_READY") {
+    //show_message_async(type)
+    //show_message_async(data)
 	// code exchange for OAuth - should be a relative URL
 	discord_sdk_commands_authorize("/api/auth/token",["identify","guilds","rpc.voice.read","rpc.activities.write"]);
 } else {

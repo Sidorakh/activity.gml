@@ -18,7 +18,9 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings":[
-    {"name":"obj_discord_avatar","order":1,"path":"objects/obj_discord_avatar/obj_discord_avatar.yy",},
+    {"name":"obj_discord_avatar","order":3,"path":"objects/obj_discord_avatar/obj_discord_avatar.yy",},
+    {"name":"obj_discord_sdk_example","order":2,"path":"objects/obj_discord_sdk_example/obj_discord_sdk_example.yy",},
     {"name":"discord_sdk","order":1,"path":"scripts/discord_sdk/discord_sdk.yy",},
+    {"name":"spr_blank_avatar","order":4,"path":"sprites/spr_blank_avatar/spr_blank_avatar.yy",},
   ],
 }

@@ -89,7 +89,7 @@ const discord_sdk_commands = {
         const result = await sdk().commands.encourageHardwareAcceleration();
         console.log(`Encourage hw acceleration`);
         console.log(result);
-        window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_COMMAND_ENCOURAGE_HARDWARE_ACCELERATION`,JSON.stringify({result}),request_id);
+        window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_COMMAND_ENCOURAGE_HARDWARE_ACCELERATION`,JSON.stringify(result),request_id);
     },
     async get_channel(request_id, channel_id = sdk().channelId){
         const result = await sdk().commands.getChannel({ channel_id });
@@ -97,11 +97,15 @@ const discord_sdk_commands = {
     },
     async get_channel_permissions(request_id){
         const result = await sdk().commands.getChannelPermissions();
-        window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_COMMAND_GET_CHANNEL`,JSON.stringify({permissions: result}),request_id);
+        window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_COMMAND_GET_CHANNEL`,JSON.stringify(result),request_id);
     },
     async get_entitlements(request_id){
         const result = await sdk().commands.getEntitlements();
         window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_COMMAND_GET_ENTITLEMENTS`,JSON.stringify({entitlements: result.entitlements}),request_id);
+    },
+    async get_instance_connected_participants(request_id) {
+        const result = await sdk().commands.getInstanceConnectedParticipants()
+        window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_COMMAND_GET_INSTANCE_CONNECTED_PARTICIPANTS`,JSON.stringify(result),request_id);
     },
     async get_platform_behaviours(request_id){
         const result = await sdk().commands.getPlatformBehaviors();
@@ -154,11 +158,12 @@ window.discord_sdk_command = function(arg_array) {
   
     const cmd = discord_sdk_commands[command];
     console.log(arg_array);
-    console.log(`Calling discord_sdk_commands.${cmd}`)
+    console.log(`Calling discord_sdk_commands.${command}`)
     if (cmd) {
         cmd(request_id,...args);
         return request_id;
     } else {
+        console.log(`Command ${command} not found`)
         return -1;
     }
 }

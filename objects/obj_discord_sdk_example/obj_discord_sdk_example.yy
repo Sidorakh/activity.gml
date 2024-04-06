@@ -13,8 +13,8 @@
   "name":"obj_discord_sdk_example",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"activities.gml",
+    "path":"folders/Extensions/activities.gml.yy",
   },
   "parentObjectId":null,
   "persistent":false,

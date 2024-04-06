@@ -1,7 +1,11 @@
+// The only permitted types of presence
 enum DISCORD_PRESENCE_TYPES {
-	PLAYING = 0,
-	LISTENING = 2,
-	WATCHING = 3,
+    PLAYING = 0,
+    // STREAMING = 1,
+    LISTENING = 2,
+    WATCHING = 3,
+    // CUSTOM = 4,
+    // COMPETING = 5,
 }
 
 function discord_sdk_setup(client_id) {
@@ -73,6 +77,8 @@ function discord_sdk_command_run(command,args=undefined) {
 			array_push(params,args[i]);
 		}
 	}
+	show_debug_message(command);
+	show_debug_message(args);
 	var result = __discord_sdk_command(json_stringify(params));
 	//show_message_async($"Request ID: {result}");
 	if (result >= 0) {
@@ -127,6 +133,10 @@ function discord_sdk_commands_open_share_moment_dialog(media_url) {
 }
 
 function discord_sdk_commands_set_activity(activity) {
+	if (is_instanceof(activity, DiscordRichPresence)) {
+		activity = activity.build_data();
+		show_debug_message(activity);
+	}
 	return discord_sdk_command_run("set_activity",[json_stringify(activity)]);
 }
 
@@ -143,7 +153,7 @@ function discord_sdk_commands_start_purchase(sku_id) {
 }
 
 function discord_sdk_commands_user_settings_get_locale() {
-	return discord_sdk_command_run("user_settings_get_locale",[sku_id]);
+	return discord_sdk_command_run("user_settings_get_locale");
 }
 
 function discord_sdk_upload_share_surface(surface_data) {
@@ -196,6 +206,102 @@ function discord_sdk_check_scopes(event) {
 	if (scope == "") return true;
 	return (array_contains(__discord_sdk_scopes(),scope));
 }
+
+function DiscordRichPresence() constructor {
+	type = undefined;
+	details = undefined;
+	state = undefined;
+	timestamps = undefined;
+	secrets = undefined;
+	party = undefined;
+	large_asset = undefined;
+	small_asset = undefined;
+	static set_type = function(_type) {
+		self.type = _type;
+		return self;
+	}
+	static set_details = function(_details) {
+		self.details = _details;
+		return self;
+	}
+	static set_state = function(_state) {
+		self.state = _state;
+		return self;
+	}
+	static set_timestamps = function(start, finish) {
+		self.timestamps = {
+			"start": start,
+			"end": finish,
+		};
+		return self;
+	}
+	static set_secrets = function(join,match) {
+		self.secrets = {
+			join: join,
+			match: match,
+		}
+		return self;
+	}
+	static set_party = function (party_id,current_size,max_size) {
+		self.party = {
+			id: party_id,
+			size: [current_size,max_size],
+		}
+		return self;
+	}
+	static set_large_asset = function(key,text){
+		self.large_asset = {
+			key: key,
+			text: text,
+		}
+		return self;
+	}
+	static set_small_asset = function(key,text){
+		self.small_asset = {
+			key: key,
+			text: text,
+		}
+		return self;
+	}
+	static build_data = function() {
+		var data = {};
+		if (self.type != undefined) {
+			data.type = self.type;
+		}
+		if (self.details != undefined) {
+			data.details = self.details;
+		}
+		if (self.state != undefined) {
+			data.state = self.state;
+		}
+		if (self.timestamps != undefined) {
+			data.timestamps = self.timestamps;
+		}
+		if (self.secrets != undefined) {
+			data.secrets = self.secrets;
+		}
+		if (self.party != undefined) {
+			data.party = self.party;
+		}
+		if (self.large_asset != undefined) {
+			data.assets = {
+				large_image: large_asset.key,
+				large_text: large_asset.text,
+			}
+		}
+		if (self.small_asset != undefined) {
+			if (data.assets == undefined) {
+				data.assets = {}
+			}
+			data.assets.small_image = small_asset.key;
+			data.assets.small_text = small_asset.text;
+		}
+		return data;
+	}
+	
+}
+
+
 
 function gmcallback_discord_sdk_callback(type,data,request_id = undefined){
 	//show_message_async("Discord SDK event received")

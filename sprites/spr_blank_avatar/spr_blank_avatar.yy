@@ -25,8 +25,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Sprites",
-    "path":"folders/Sprites.yy",
+    "name":"activities.gml",
+    "path":"folders/Extensions/activities.gml.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

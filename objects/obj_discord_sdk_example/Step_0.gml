@@ -40,7 +40,17 @@ if (keyboard_check_pressed(ord("0"))) {
 	discord_sdk_commands_open_share_moment_dialog("")
 }
 if (keyboard_check_pressed(ord("Q"))) {
-	discord_sdk_commands_set_activity({type: 0, details: "Details, details.. Who needs 'em",state: "a real estate hah gottem"});
+	var presence = new DiscordRichPresence()
+						.set_details("The details section!")
+						.set_state("The state section")
+						.set_large_asset("spr_coin_red","Large Caption!")
+						.set_small_asset("spr_coin_green","Small Caption!")
+						.set_timestamps(1,2147483647)
+						.set_type(DISCORD_PRESENCE_TYPES.PLAYING)
+						.set_secrets("hi","hello")
+						.set_party("111",1,5);
+	
+	discord_sdk_commands_set_activity(presence);
 }
 if (keyboard_check_pressed(ord("W"))) {
 	discord_sdk_commands_set_config(true);
