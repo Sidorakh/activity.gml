@@ -156,6 +156,10 @@ function discord_sdk_commands_user_settings_get_locale() {
 	return discord_sdk_command_run("user_settings_get_locale");
 }
 
+function discord_sdk_commands_get_instance_connected_participants() {
+	return discord_sdk_command_run("get_instance_connected_participants");
+}
+
 function discord_sdk_upload_share_surface(surface_data) {
 	var request_id = discord_sdk_request_count();
 	var w = surface_get_width(surface_data);
