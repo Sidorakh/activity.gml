@@ -16,6 +16,19 @@ Required scopes:
 
 Returns: N/A
 
+## Usage
+This code checks if the discord SDK is ready, and if so, attempts to authorize the current user with Discord
+```gml
+// Create
+attempted_auth = false;
+
+// Step
+if (attempted_auth == false && discord_sdk_is_ready()) {
+    attempted_auth = true;
+    discord_sdk_commands_authorize("/api/auth/token",["identify","guilds","rpc.voice.read","rpc.activities.write"]);
+}
+```
+
 ## Callback
 
 Has Callback: Yes
