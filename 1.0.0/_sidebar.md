@@ -5,6 +5,7 @@
 - [The Social Async Event](the-social-async-event.md)
 - [Global Activity Data](global-activity-data.md)
 - [DiscordRichPresence()](discord-rich-presence.md)
+- [is_discord()](is_discord.md)
 - [discord_sdk_setup()](discord_sdk_setup.md)
 - [discord_sdk_upload_share_surface()](discord_sdk_upload_share_surface.md)
 - [discord_sdk_commands_authorize()](discord_sdk_commands_authorize.md)
