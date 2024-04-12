@@ -5,6 +5,11 @@ let refresh_token = null;
 let expires_in = null;
 let expires_at = null;
 
+window.is_discord = function() {
+    return window.location.hostname.includes('discordsays.com');
+
+}
+
 window.discord_sdk_is_ready = function() {
     return window.discord_sdk_ready;
 }
@@ -185,7 +190,24 @@ window.discord_sdk_set_share_surface_size = function(width,height) {
     canvas.width = width;
     canvas.height = height;
 }
-  
+
+window.discord_sdk_upload_file = async function(request_id, data, fname, type) {
+    const body = new FormData();
+    const file = new File([data],fname, {type});
+    body.append('file',file)
+    const response = await fetch(`https://discord.com/api/applications/${sdk().clientId}/attachment`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${access_token}`,
+        },
+        body
+    });
+    const json = await response.json();
+
+    window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_SHARE_MEDIA_UPLOADED`,JSON.stringify(json),request_id);
+
+}
+
 window.discord_sdk_upload_share_surface = function(request_id, surface_data,width,height) {
     // discord.com/api/applications/${applicationId}/attachment
     const canvas = document.createElement('canvas');
@@ -213,10 +235,18 @@ window.discord_sdk_upload_share_surface = function(request_id, surface_data,widt
     },'image/png');
 }
   
-window.discord_sdk_subscribe = function(event) {
-    sdk().subscribe(event, (data)=>{
-        window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_${event}`,JSON.stringify(data))
-    });
+window.discord_sdk_subscribe = async function(event,args=undefined) {
+    try {
+        console.log(`Subscribing to event ${event}}`);
+        if (args != undefined) args = JSON.parse(args);
+        const result = await sdk().subscribe(event, (data)=>{
+            window.gml_Script_gmcallback_discord_sdk_callback(null,null,`DISCORD_${event}`,JSON.stringify(data))
+        },args);
+    } catch(e) {
+        console.log(`Failed to subscribe to event ${event}}`);
+        console.error(e);
+    }
+
 } 
 window.discord_sdk_unsubscribe = function(event) {
     sdk().unsubscribe(event)

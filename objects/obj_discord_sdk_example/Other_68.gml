@@ -24,11 +24,14 @@ if (type == network_type_data) {
 	//show_debug_message(body);
 	if (packet.type == "update-position") {
 		var names = variable_struct_get_names(packet.parameters);
-		//show_debug_message(json_stringify(names));
+		//show_message_async(json_stringify(names));
 		for (var i=0;i<array_length(names);i++) {
-			members[$ names[i]].x = packet.parameters[$ names[i]].x;
-			members[$ names[i]].y = packet.parameters[$ names[i]].y;
+			var inst = members[$ names[i]];
+			if (inst == undefined) continue;
+			inst.x = packet.parameters[$ names[i]].x;
+			inst.y = packet.parameters[$ names[i]].y;
 		}
 	}
+	
 	//show_debug_message(json_stringify(members));
 }

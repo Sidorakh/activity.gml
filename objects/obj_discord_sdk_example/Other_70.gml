@@ -18,20 +18,21 @@ if (type == "DISCORD_READY") {
 
 if (type == "DISCORD_AUTHORIZE_SUCCESS") {
 	user_id = data.user_data.id;
-	show_message_async($"Data: {json_stringify(data,true)}");
-	// subscribe to relevant events
+	
 	discord_sdk_subscribe("VOICE_STATE_UPDATE");
-	discord_sdk_subscribe("SPEAKING_START");
-	discord_sdk_subscribe("SPEAKING_STOP")
-	discord_sdk_subscribe("ACTIVITY_LAYOUT_MODE_UPDATE");
-	discord_sdk_subscribe("ORIENTATION_UPDATE");
-	discord_sdk_subscribe("CURRENT_USER_UPDATE");
-	discord_sdk_subscribe("THERMAL_STATE_UPDATE");
-	discord_sdk_subscribe("ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE");
-	discord_sdk_subscribe("ENTITLEMENT_CREATE");
+	show_message_async(discord_sdk_get_channel_id());
+    discord_sdk_subscribe("SPEAKING_START", {channel_id: discord_sdk_get_channel_id()});
+    discord_sdk_subscribe("SPEAKING_STOP", {channel_id: discord_sdk_get_channel_id()})
+    discord_sdk_subscribe("ACTIVITY_LAYOUT_MODE_UPDATE");
+    discord_sdk_subscribe("ORIENTATION_UPDATE");
+    discord_sdk_subscribe("CURRENT_USER_UPDATE");
+    discord_sdk_subscribe("THERMAL_STATE_UPDATE");
+    discord_sdk_subscribe("ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE");
+	
+	network_connect_raw_async(socket,$"wss://{client_id}.discordsays.com/{user_id}/{data.websocket_token}/{discord_sdk_get_instance_id()}/",443);
 	
 	
-	network_connect_raw_async(socket,$"wss://{client_id}.discordsays.com/{data.user_data.id}/{data.websocket_token}/{discord_sdk_get_instance_id()}/",443);
+	
 }
 
 if (string_starts_with(type,"DISCORD_COMMAND")) {
@@ -51,3 +52,5 @@ if (type == "DISCORD_ACTIVITY_INSTANCE_PARTICIPANTS_UPDATE") {
 if (async_load[? "id"] == share_request && share_request != -1) {
 	discord_sdk_commands_open_share_moment_dialog(data.attachment.url);
 }
+
+//show_message_async(type);

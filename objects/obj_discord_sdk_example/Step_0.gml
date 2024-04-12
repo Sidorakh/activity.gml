@@ -52,16 +52,16 @@ if (keyboard_check_pressed(ord("Q"))) {
 	
 	discord_sdk_commands_set_activity(presence);
 }
-if (keyboard_check_pressed(ord("W"))) {
+if (keyboard_check_pressed(ord("E"))) {
 	discord_sdk_commands_set_config(true);
 }
-if (keyboard_check_pressed(ord("E"))) {
+if (keyboard_check_pressed(ord("R"))) {
 	discord_sdk_commands_set_orientation_lock_state(1,1,1);	// who knows
 }
-if (keyboard_check_pressed(ord("R"))) {
+if (keyboard_check_pressed(ord("T"))) {
 	discord_sdk_commands_start_purchase("6942069");
 }
-if (keyboard_check_pressed(ord("T"))) {
+if (keyboard_check_pressed(ord("Y"))) {
 	discord_sdk_commands_user_settings_get_locale();
 }
 

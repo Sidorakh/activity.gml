@@ -8,6 +8,10 @@ enum DISCORD_PRESENCE_TYPES {
     // COMPETING = 5,
 }
 
+function is_discord() {
+	return __discord_sdk_is_discord();
+}
+
 function discord_sdk_setup(client_id) {
 	return __discord_sdk_setup(client_id)
 }
@@ -40,8 +44,12 @@ function discord_sdk_get_platform() {
 	return __discord_sdk_get_platform();
 }
 
-function discord_sdk_subscribe(event) {
-    return __discord_sdk_subscribe(event);
+function discord_sdk_subscribe(event, args=undefined) {
+	if (args == undefined) {
+		return __discord_sdk_subscribe(event);
+	} else {
+		return __discord_sdk_subscribe(event,json_stringify(args));
+	}
 }
 
 function discord_sdk_unsubscribe(event) {

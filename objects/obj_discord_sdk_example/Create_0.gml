@@ -4,16 +4,20 @@ client_id = "1219424590342782987";
 
 discord_sdk_setup(client_id);
 
+
 width = 0;
 height = 0;
 
 cmd = noone;
 
 user_id = "";
+websocket_token = "";
 
 share_request = -1;
 
-socket = network_create_socket(network_socket_wss);
+socket = network_create_socket(network_socket_ws);
+
+//show_message_async(socket);
 
 // basic multiplayer stuff
 
@@ -56,3 +60,4 @@ function update_member(data) {
 
 
 members = {};
+network_set_config(network_config_use_non_blocking_socket,true)
